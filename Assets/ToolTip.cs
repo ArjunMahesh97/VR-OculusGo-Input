@@ -7,8 +7,8 @@ using TMPro;
 
 public class ToolTip : MonoBehaviour
 {
-    [SerializeField] TextMeshProUGUI helpText;
-    [SerializeField] TextMeshProUGUI toolTipText;
+    TextMeshProUGUI helpText;
+    TextMeshProUGUI toolTipText;
 
     [SerializeField] string helpString;
     [SerializeField] string tipString;

@@ -6,21 +6,23 @@ using UnityEngine;
 public class Controller : MonoBehaviour
 {
     GameObject gObject;
+    GameObject empty;
 
-    [SerializeField] TextMeshProUGUI rotationText;
+    //[SerializeField] TextMeshProUGUI rotationText;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        gObject = new GameObject();
-        rotationText = GameObject.Find("RotationText").GetComponent<TextMeshProUGUI>();
+        empty = new GameObject();
+        gObject = empty;
+        //rotationText = GameObject.Find("RotationText").GetComponent<TextMeshProUGUI>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        rotationText.text = transform.rotation.ToString();
+        //rotationText.text = transform.rotation.ToString();
 
         transform.rotation = OVRInput.GetLocalControllerRotation(OVRInput.Controller.RTrackedRemote);
 
@@ -36,6 +38,10 @@ public class Controller : MonoBehaviour
                     gObject = hit.transform.gameObject;
                     gObject.transform.SendMessage("OnVREnter");
                 }
+
+                if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger)){
+                    gObject.transform.SendMessage("OnVRTriggerDown");
+                }
             }
         }
         else
@@ -43,7 +49,7 @@ public class Controller : MonoBehaviour
             if (gObject != null) ;
             {
                 gObject.transform.SendMessage("OnVRExit");
-                gObject = null;
+                gObject = empty;
             }
         }
     }
