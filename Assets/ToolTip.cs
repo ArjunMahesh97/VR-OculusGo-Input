@@ -13,6 +13,7 @@ public class ToolTip : MonoBehaviour
     [SerializeField] string helpString;
     [SerializeField] string tipString;
 
+
     // Start is called before the first frame update
     void Start()
     {
